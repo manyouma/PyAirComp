@@ -6,6 +6,7 @@ from feasibility_DC import feasibility_DC
 from user_selection_DC import user_selection_DC, user_selection_SDR_L1
 import matplotlib.pyplot as plt
 
+np.random.seed(0)
 
 N = 6      # Number of antennas
 K = 20     # Number of users
@@ -42,9 +43,10 @@ for i_gamma in np.arange(gamma_num):
             if param["verbosity"] > 1:
                 print(f'Working on test case: {i_test}')
         except:
-            print("error occur")
+            print("Error occurred...")
 
 # Make the plots
 plt.plot(gamma_set, user_num_DC.mean(axis=1), label='DC')
 plt.plot(gamma_set, user_num_SDR_l1.mean(axis=1), label='SDR')
 plt.legend()
+plt.savefig('compare_DC_SDR.png')
